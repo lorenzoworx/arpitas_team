@@ -1,0 +1,67 @@
+
+
+<!-- <span *ngIf="selectedFile">{{ selectedFile?.name }}</span> -->
+<input #fileInput type="file" (change)="onFileSelected($event)" hidden />
+
+
+
+<div class="w-screen min-h-screen pb-12 px-8 bg-[#222] text-white">
+    <div class="text-3xl flex items-center justify-start p-12 gap-12">
+        <h1 class="text-5xl font-bold">Finance Tracker</h1>
+        <button class="button bg-[#333] hover:cursor-pointer hover:bg-[#444] px-12 py-4 rounded-xl" (click)="fileInput.click()">Itemize Receipt</button>
+        <button class="button bg-[#333] hover:cursor-pointer hover:bg-[#444] px-12 py-4 rounded-xl " *ngIf="response.length>0" (click)="getAlternatives()">Get Alternatives</button>
+    </div>   
+
+    
+    <div class="text-2xl font-semibold py-4" *ngIf="advice?.length>0">Advice : {{advice}}</div>
+    
+    <div class="flex flex-wrap gap-8">
+        <div class="">
+            <ng-container *ngIf="response?.length > 0">
+                <a class="text-2xl mb-4">Items</a>
+                <div class="flex justify-between w-[400px] items-center border border-[#eee] p-2">
+                    <span>Item Name</span>
+                    <span>Price paid</span>
+                </div>
+                <ng-container *ngFor="let item of response">
+                    
+                    <div class="flex justify-between w-[400px] items-center border border-[#eee] p-2">
+                        <ng-container *ngFor="let data of item">
+                            <span>{{data}}</span>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                
+            </ng-container>
+        </div>
+        
+        <div>
+            <ng-container *ngIf="cats?.length > 0">
+                <a class="text-2xl mb-4">Categories</a>
+                <div class="flex justify-between w-[400px] items-center border border-[#eee] p-2">
+                    <span>Category</span>
+                    <span>Expense</span>
+                </div>
+                <ng-container *ngFor="let item of cats">
+                    
+                    <div class="flex justify-between w-[400px] items-center border border-[#eee] p-2">
+                        <ng-container *ngFor="let data of item">
+                            <span>{{data}}</span>
+                        </ng-container>
+                    </div>
+                </ng-container>
+                
+            </ng-container>
+        </div>
+        <div class="text-2xl font-bold" *ngIf="advice?.length>0">Alternatives : {{alter}}</div>
+
+        
+    </div>
+
+
+
+
+
+
+
+</div>
